@@ -1,0 +1,10 @@
+{
+    "manifest_version": 3,
+    "name": "HeaderTools",
+    "description": "A plugin for manipulating request headers",
+    "version": "1.0",
+    "action": {
+      "default_popup": "build/index.html",
+      "default_icon": "htlogo.png"
+    }
+}
