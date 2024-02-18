@@ -4,7 +4,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import RuleTitle from './RuleTitle';
 import { RuleData } from './RuleList';
 import DomainRegex from './DomainRegex';
-import HeaderCapture from './HeaderCapture';
+import HeaderCapture, { Header } from './HeaderCapture';
 
 interface RuleProps {
   rule: RuleData;
@@ -19,13 +19,23 @@ const Rule: React.FC<RuleProps> = ({ rule, expanded, onToggle, onChange, onRuleC
     onRuleChange({ ...rule, domains: newDomains });
   };
 
-  const handleHeadersChange = (newHeaders: { name: string; value: string }[]) => {
+  const handleHeadersChange = (newHeaders: Header[]) => {
     onRuleChange({ ...rule, headers: newHeaders });
   };
 
   return (
     <Accordion expanded={expanded} onChange={(event, isExpanded) => onChange(event, isExpanded)}>
-      <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
+      <AccordionSummary expandIcon={<ExpandMoreIcon />}
+        sx={{
+          backgroundColor: expanded ? 'rgb(50, 50, 50)' : 'inherit',
+          '.Mui-expanded': {
+            backgroundColor: 'rgb(50, 50, 50)',
+          },
+          '&:hover': {
+            backgroundColor: 'rgb(50, 50, 50)',
+          },
+        }}
+      >
       <RuleTitle 
         title={rule.title} 
         onTitleChange={(newTitle) => onRuleChange({ ...rule, title: newTitle })}

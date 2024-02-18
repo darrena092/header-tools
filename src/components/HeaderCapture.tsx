@@ -1,21 +1,22 @@
-import React, { useState } from 'react';
-import { Button, TextField, IconButton, List, ListItem, ListItemText, ListItemSecondaryAction, Grid } from '@mui/material';
+import React from 'react';
+import { TextField, IconButton, List, ListItem, Grid, Button, Typography } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 
+export interface Header {
+  name: string;
+  value: string;
+}
+
 interface HeadersProps {
-  headers: { name: string; value: string }[];
-  onHeadersChange: (newHeaders: { name: string; value: string }[]) => void;
+  headers: Header[];
+  onHeadersChange: (newHeaders: Header[]) => void;
 }
 
 const HeaderCapture: React.FC<HeadersProps> = ({ headers, onHeadersChange }) => {
-  const [newHeader, setNewHeader] = useState({ name: '', value: '' });
 
-  const handleAddHeader = () => {
-    if (newHeader.name && newHeader.value) {
-      const updatedHeaders = [...headers, newHeader];
-      onHeadersChange(updatedHeaders);
-      setNewHeader({ name: '', value: '' });
-    }
+  const handleHeaderChange = (part: keyof Header, value: string, index: number) => {
+    const updatedHeaders = headers.map((header, i) => i === index ? { ...header, [part]: value } : header);
+    onHeadersChange(updatedHeaders);
   };
 
   const handleDeleteHeader = (index: number) => {
@@ -23,43 +24,51 @@ const HeaderCapture: React.FC<HeadersProps> = ({ headers, onHeadersChange }) => 
     onHeadersChange(updatedHeaders);
   };
 
+  const handleAddHeader = () => {
+    onHeadersChange([...headers, { name: "my-header", value: "my-header-value"}]);
+  };
+
   return (
     <div>
+      <Typography variant="subtitle1" style={{ margin: '20px 0 10px' }}>
+        Headers to Inject
+      </Typography>
       <List>
         {headers.map((header, index) => (
           <ListItem key={index} dense>
-            <ListItemText primary={`${header.name}: ${header.value}`} />
-            <ListItemSecondaryAction>
-              <IconButton edge="end" aria-label="delete" onClick={() => handleDeleteHeader(index)}>
-                <DeleteIcon />
-              </IconButton>
-            </ListItemSecondaryAction>
+            <Grid container spacing={2} alignItems="center">
+              <Grid item xs={6}>
+                <TextField
+                  fullWidth
+                  variant="outlined"
+                  size="small"
+                  label="Header Name"
+                  value={header.name}
+                  onChange={(e) => handleHeaderChange('name', e.target.value, index)}
+                />
+              </Grid>
+              <Grid item xs={5}>
+                <TextField
+                  fullWidth
+                  variant="outlined"
+                  size="small"
+                  label="Header Value"
+                  value={header.value}
+                  onChange={(e) => handleHeaderChange('value', e.target.value, index)}
+                />
+              </Grid>
+              <Grid item xs={1}>
+              {headers.length > 1 && (
+                <IconButton onClick={() => handleDeleteHeader(index)}>
+                  <DeleteIcon />
+                </IconButton>
+              )}
+              </Grid>
+            </Grid>
           </ListItem>
         ))}
       </List>
-      <Grid container spacing={2}>
-        <Grid item xs={6}>
-          <TextField
-            label="Header Name"
-            variant="outlined"
-            size="small"
-            value={newHeader.name}
-            onChange={(e) => setNewHeader({ ...newHeader, name: e.target.value })}
-            fullWidth
-          />
-        </Grid>
-        <Grid item xs={6}>
-          <TextField
-            label="Header Value"
-            variant="outlined"
-            size="small"
-            value={newHeader.value}
-            onChange={(e) => setNewHeader({ ...newHeader, value: e.target.value })}
-            fullWidth
-          />
-        </Grid>
-      </Grid>
-      <Button onClick={handleAddHeader} style={{ marginTop: '10px' }}>
+      <Button onClick={handleAddHeader}>
         Add Header
       </Button>
     </div>

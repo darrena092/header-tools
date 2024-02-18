@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from '@mui/material';
 import Rule from './Rule';
+import { Header } from './HeaderCapture';
 
 export interface RuleData {
   id: number;
   title: string;
   domains: string[];
-  headers: { name: string; value: string }[];
+  headers: Header[];
 }
 
 const RuleList: React.FC = () => {
@@ -30,7 +31,7 @@ const RuleList: React.FC = () => {
       id: Date.now(),
       title: "New Rule",
       domains: ["/(?:http[s]?:\/\/)?(?:www\.)?(example\.com)\/?[^\s]*/i"],
-      headers: [],
+      headers: [{name: "my-header", value: "my-header-value"}],
     };
     const updatedRules = [...rules, newRule];
     setRules(updatedRules);

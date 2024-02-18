@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Button, TextField, IconButton, List, ListItem, ListItemText, ListItemSecondaryAction } from '@mui/material';
+import React from 'react';
+import { TextField, IconButton, List, ListItem, Grid, Button, Typography } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 interface DomainRegexProps {
@@ -8,14 +8,10 @@ interface DomainRegexProps {
 }
 
 const DomainRegex: React.FC<DomainRegexProps> = ({ domains, onDomainsChange }) => {
-  const [newDomain, setNewDomain] = useState('');
 
-  const handleAddDomain = () => {
-    if (newDomain) {
-      const updatedDomains = [...domains, newDomain];
-      onDomainsChange(updatedDomains);
-      setNewDomain("/(?:http[s]?:\/\/)?(?:www\.)?(example\.com)\/?[^\s]*/i");
-    }
+  const handleDomainChange = (value: string, index: number) => {
+    const updatedDomains = domains.map((domain, i) => i === index ? value : domain);
+    onDomainsChange(updatedDomains);
   };
 
   const handleDeleteDomain = (index: number) => {
@@ -23,28 +19,39 @@ const DomainRegex: React.FC<DomainRegexProps> = ({ domains, onDomainsChange }) =
     onDomainsChange(updatedDomains);
   };
 
+  const handleAddDomain = () => {
+    onDomainsChange([...domains, ""]);
+  };
+
   return (
     <div>
+      <Typography variant="subtitle1" style={{ margin: '20px 0 10px' }}>
+        Domain Patterns
+      </Typography>
       <List>
         {domains.map((domain, index) => (
           <ListItem key={index} dense>
-            <ListItemText primary={domain} />
-            <ListItemSecondaryAction>
-              <IconButton edge="end" aria-label="delete" onClick={() => handleDeleteDomain(index)}>
-                <DeleteIcon />
-              </IconButton>
-            </ListItemSecondaryAction>
+            <Grid container spacing={2} alignItems="center">
+              <Grid item xs>
+                <TextField
+                  fullWidth
+                  variant="outlined"
+                  size="small"
+                  value={domain}
+                  onChange={(e) => handleDomainChange(e.target.value, index)}
+                />
+              </Grid>
+              <Grid item>
+              {domains.length > 1 && (
+                <IconButton onClick={() => handleDeleteDomain(index)}>
+                    <DeleteIcon />
+                </IconButton>
+              )}
+              </Grid>
+            </Grid>
           </ListItem>
         ))}
       </List>
-      <TextField
-        label="New Domain Regex"
-        variant="outlined"
-        size="small"
-        value={newDomain}
-        onChange={(e) => setNewDomain(e.target.value)}
-        fullWidth
-      />
       <Button onClick={handleAddDomain} style={{ marginTop: '10px' }}>
         Add Domain
       </Button>
