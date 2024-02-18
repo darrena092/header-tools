@@ -6,6 +6,8 @@
  
 ## Overview
 HeaderTools is a versatile and user-friendly Chrome extension designed to provide users the capability to define unique browsing rules. These rules can be a combination of titles, domain regular expressions (regex), and headers to be injected for each request matching the defined domain regex.
+
+This was largely created as a replacement for ModHeader due to the author's decision to include Adware in a recent update.
  
 ## Features
 * Title Setting: Define unique titles for your browsing rules.
