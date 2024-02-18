@@ -32,7 +32,7 @@ This was largely created as a replacement for ModHeader due to the author's deci
 * NB: Defining a header that already exists in a request will replace that header. Useful for things like modifying your user agent string.
  
 ## Support
-If you encounter any bugs or would like to request a feature, kindly raise an issue in our GitHub repository. Your feedback is invaluable in helping us improve HeaderTools.
+If you encounter any bugs or would like to request a feature, please raise an issue. Your feedback is invaluable in helping me improve HeaderTools.
  
 ## License
 HeaderTools is licensed under the GNU General Public License v3.0.
