@@ -1,4 +1,4 @@
-// Preload rules, as the extension API doesn't support blocking operations.
+// Preload rules, as the Chrome extension API doesn't support blocking operations.
 let cachedRules = [];
 
 function updateCachedRules() {
@@ -16,6 +16,13 @@ chrome.storage.onChanged.addListener((changes, namespace) => {
     updateCachedRules();
   }
 });
+
+// Cross browser support
+const extraInfoSpec = ["blocking", "requestHeaders"];
+if (typeof browser === "undefined") {
+    // Detect Chrome and add extraHeaders.
+    extraInfoSpec.push("extraHeaders");
+}
 
 chrome.webRequest.onBeforeSendHeaders.addListener(
   (details) => {
@@ -35,5 +42,5 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
     return { requestHeaders: details.requestHeaders };
   },
   { urls: ["<all_urls>"] },
-  ["blocking", "requestHeaders", "extraHeaders"]
+  extraInfoSpec
 );
