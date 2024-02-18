@@ -11,9 +11,10 @@ interface RuleProps {
   expanded: boolean;
   onChange: (event: React.ChangeEvent<{}>, isExpanded: boolean) => void;
   onRuleChange: (updatedRule: RuleData) => void;
+  onRuleDelete: (ruleId: number) => void;
 }
 
-const Rule: React.FC<RuleProps> = ({ rule, expanded, onChange, onRuleChange }) => {
+const Rule: React.FC<RuleProps> = ({ rule, expanded, onChange, onRuleChange, onRuleDelete }) => {
   const handleDomainsChange = (newDomains: string[]) => {
     onRuleChange({ ...rule, domains: newDomains });
   };
@@ -36,8 +37,10 @@ const Rule: React.FC<RuleProps> = ({ rule, expanded, onChange, onRuleChange }) =
         }}
       >
       <RuleTitle 
-        title={rule.title} 
+        title={rule.title}
+        id={rule.id}
         onTitleChange={(newTitle) => onRuleChange({ ...rule, title: newTitle })}
+        onRuleDelete={(ruleId) => onRuleDelete(ruleId)}
       />
       </AccordionSummary>
       <AccordionDetails>

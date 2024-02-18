@@ -1,13 +1,17 @@
 {
-    "manifest_version": 3,
-    "name": "HeaderTools",
-    "description": "A plugin for manipulating request headers",
-    "version": "1.0",
-    "action": {
-      "default_popup": "build/index.html",
-      "default_icon": "htlogo.png"
-    },
-    "permissions": [
-      "storage"
-    ]
+  "manifest_version": 2,
+  "name": "HeaderTools",
+  "description": "A plugin for manipulating request headers",
+  "version": "1.0",
+  "browser_action": {
+    "default_popup": "build/index.html",
+    "default_icon": "htlogo.png"
+  },
+  "permissions": [
+    "webRequest", "webRequestBlocking", "storage", "<all_urls>"
+  ],
+  "background": {
+    "scripts": ["service/background.js"],
+    "persistent": true
+  }
 }

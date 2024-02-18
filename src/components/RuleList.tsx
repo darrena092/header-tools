@@ -30,7 +30,7 @@ const RuleList: React.FC = () => {
     const newRule: RuleData = {
       id: Date.now(),
       title: "New Rule",
-      domains: ["/(?:http[s]?:\/\/)?(?:www\.)?(example\.com)\/?[^\s]*/i"],
+      domains: ["(?:http[s]?:\/\/)?(?:www\.)?(example\.com)\/?[^\s]*"],
       headers: [{name: "my-header", value: "my-header-value"}],
     };
     const updatedRules = [...rules, newRule];
@@ -44,6 +44,13 @@ const RuleList: React.FC = () => {
     chrome.storage.local.set({ rules: updatedRules });
   };
 
+  const handleRuleDelete = (ruleId: number) => {
+    const updatedRules = rules.filter(rule => rule.id !== ruleId);
+    setRules(updatedRules);
+    chrome.storage.local.set({ rules: updatedRules });
+  };
+
+
   return (
     <div>
       {rules.map((rule, index) => (
@@ -53,6 +60,7 @@ const RuleList: React.FC = () => {
           expanded={expanded === `panel${index}`}
           onChange={handleChange(`panel${index}`)}
           onRuleChange={handleRuleUpdate}
+          onRuleDelete={handleRuleDelete}
         />
       ))}
       <Button onClick={addNewRule} style={{ marginTop: '10px' }}>Add New Rule</Button>
