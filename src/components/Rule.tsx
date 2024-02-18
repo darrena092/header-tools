@@ -9,12 +9,11 @@ import HeaderCapture, { Header } from './HeaderCapture';
 interface RuleProps {
   rule: RuleData;
   expanded: boolean;
-  onToggle: (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void;
   onChange: (event: React.ChangeEvent<{}>, isExpanded: boolean) => void;
   onRuleChange: (updatedRule: RuleData) => void;
 }
 
-const Rule: React.FC<RuleProps> = ({ rule, expanded, onToggle, onChange, onRuleChange }) => {
+const Rule: React.FC<RuleProps> = ({ rule, expanded, onChange, onRuleChange }) => {
   const handleDomainsChange = (newDomains: string[]) => {
     onRuleChange({ ...rule, domains: newDomains });
   };

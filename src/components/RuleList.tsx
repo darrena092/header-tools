@@ -52,7 +52,6 @@ const RuleList: React.FC = () => {
           rule={rule}
           expanded={expanded === `panel${index}`}
           onChange={handleChange(`panel${index}`)}
-          onToggle={() => {}}
           onRuleChange={handleRuleUpdate}
         />
       ))}
