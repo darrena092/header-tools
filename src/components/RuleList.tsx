@@ -29,7 +29,7 @@ const RuleList: React.FC = () => {
     const newRule: RuleData = {
       id: Date.now(),
       title: "New Rule",
-      domains: [],
+      domains: ["/(?:http[s]?:\/\/)?(?:www\.)?(example\.com)\/?[^\s]*/i"],
       headers: [],
     };
     const updatedRules = [...rules, newRule];

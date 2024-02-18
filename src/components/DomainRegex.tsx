@@ -14,7 +14,7 @@ const DomainRegex: React.FC<DomainRegexProps> = ({ domains, onDomainsChange }) =
     if (newDomain) {
       const updatedDomains = [...domains, newDomain];
       onDomainsChange(updatedDomains);
-      setNewDomain('');
+      setNewDomain("/(?:http[s]?:\/\/)?(?:www\.)?(example\.com)\/?[^\s]*/i");
     }
   };
 
