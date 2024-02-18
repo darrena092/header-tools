@@ -6,7 +6,7 @@
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/darrena092)
  
 ## Overview
-HeaderTools is a versatile and user-friendly extension designed to provide users the capability to manipulate and inject request headers based on regex domain selectors.
+HeaderTools is a versatile and user-friendly browser extension supporting Chrome, Brave and Firefox designed to provide users the capability to manipulate and inject request headers based on regex domain selectors.
 
 This was largely created as a replacement for ModHeader due to the author's decision to include Adware in a recent update.
 
@@ -21,7 +21,7 @@ This was largely created as a replacement for ModHeader due to the author's deci
 * User-friendly Interface: The interface is designed to be intuitive and user-friendly, simplifying the process of creating and managing your rules.
  
 ## How to Use
-* Install the Extension: Add HeaderTools to your Chrome/Brave browser using the latest release from the releases page.
+* Install the Extension: Add HeaderTools to your Chrome/Brave browser using the latest release from the releases page (Firefox release pending review).
 * Open the Extension: Click on the HeaderTools icon in your browser's toolbar.
 * Create a Rule:
     * Click on the "New Rule" button to start creating a rule.
