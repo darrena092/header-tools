@@ -3,6 +3,8 @@ import { Accordion, AccordionSummary, AccordionDetails, Typography, Checkbox, Fo
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import RuleTitle from './RuleTitle';
 import { RuleData } from './RuleList';
+import DomainRegex from './DomainRegex';
+import HeaderCapture from './HeaderCapture';
 
 interface RuleProps {
   rule: RuleData;
@@ -13,6 +15,14 @@ interface RuleProps {
 }
 
 const Rule: React.FC<RuleProps> = ({ rule, expanded, onToggle, onChange, onRuleChange }) => {
+  const handleDomainsChange = (newDomains: string[]) => {
+    onRuleChange({ ...rule, domains: newDomains });
+  };
+
+  const handleHeadersChange = (newHeaders: { name: string; value: string }[]) => {
+    onRuleChange({ ...rule, headers: newHeaders });
+  };
+
   return (
     <Accordion expanded={expanded} onChange={(event, isExpanded) => onChange(event, isExpanded)}>
       <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
@@ -22,7 +32,8 @@ const Rule: React.FC<RuleProps> = ({ rule, expanded, onToggle, onChange, onRuleC
       />
       </AccordionSummary>
       <AccordionDetails>
-        <Typography>Headers and URL regex rules go here.</Typography>
+        <DomainRegex domains={rule.domains} onDomainsChange={handleDomainsChange} />
+        <HeaderCapture headers={rule.headers} onHeadersChange={handleHeadersChange} />
       </AccordionDetails>
     </Accordion>
   );

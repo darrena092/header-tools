@@ -5,6 +5,8 @@ import Rule from './Rule';
 export interface RuleData {
   id: number;
   title: string;
+  domains: string[];
+  headers: { name: string; value: string }[];
 }
 
 const RuleList: React.FC = () => {
@@ -27,6 +29,8 @@ const RuleList: React.FC = () => {
     const newRule: RuleData = {
       id: Date.now(),
       title: "New Rule",
+      domains: [],
+      headers: [],
     };
     const updatedRules = [...rules, newRule];
     setRules(updatedRules);
