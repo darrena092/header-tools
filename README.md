@@ -3,6 +3,7 @@
 </p>
 
 # HeaderTools
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/darrena092)
  
 ## Overview
 HeaderTools is a versatile and user-friendly Chrome extension designed to provide users the capability to define unique browsing rules. These rules can be a combination of titles, domain regular expressions (regex), and headers to be injected for each request matching the defined domain regex.
