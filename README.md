@@ -29,6 +29,7 @@ This was largely created as a replacement for ModHeader due to the author's deci
     * Specify a domain regex to define the domain(s) your rule should apply to.
     * Define the headers you want to inject whenever a request matches your rule.
 * Automatic Save: Rules are automatically saved as you create them and are immediately active on your browser.
+* NB: Defining a header that already exists in a request will replace that header. Useful for things like modifying your user agent string.
  
 ## Support
 If you encounter any bugs or would like to request a feature, kindly raise an issue in our GitHub repository. Your feedback is invaluable in helping us improve HeaderTools.
