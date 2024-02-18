@@ -13,10 +13,6 @@ interface RuleProps {
 }
 
 const Rule: React.FC<RuleProps> = ({ rule, expanded, onToggle, onChange, onRuleChange }) => {
-  const handleTitleChange = (newTitle: string) => {
-    console.log('Title changed to:', newTitle);
-  };
-
   return (
     <Accordion expanded={expanded} onChange={(event, isExpanded) => onChange(event, isExpanded)}>
       <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
