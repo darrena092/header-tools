@@ -21,7 +21,7 @@ This was largely created as a replacement for ModHeader due to the author's deci
 * User-friendly Interface: The interface is designed to be intuitive and user-friendly, simplifying the process of creating and managing your rules.
  
 ## How to Use
-* Install the Extension: Add HeaderTools to your Chrome/Brave browser using the latest release from the releases page (Firefox release pending review).
+* Install the Extension: Add HeaderTools to your Chrome/Brave browser using the latest release from the releases page or install from the [Mozilla Addons Store](https://addons.mozilla.org/addon/headertools/).
 * Open the Extension: Click on the HeaderTools icon in your browser's toolbar.
 * Create a Rule:
     * Click on the "New Rule" button to start creating a rule.
